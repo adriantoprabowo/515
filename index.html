@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -10,7 +11,9 @@
       margin: 0;
       padding: 0;
       height: 100%;
-      background: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+      background-color: #bceeea;
+background-image: url("https://www.transparenttextures.com/patterns/arches.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
       font-family: sans-serif;
     }
 
@@ -23,7 +26,7 @@
     #pagination {
       text-align: center;
       padding: 8px 4px;
-      background: #fff;
+       background: linear-gradient(to right, #e0f7fa, #b2ebf2);
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       font-size: 16px;
       display: flex;
@@ -81,7 +84,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
+  height: 100% !important;
   overflow-x: hidden;
   overflow-y: auto;
   box-shadow: inset 0 0 10px rgba(0,0,0,0.1); /* pinggiran */
@@ -89,10 +92,17 @@
   touch-action: pan-y;
 }
 
+.page-wrapper.stf__item {
+  top: 0px !important;
+  height: 100% !important;
+}
 
 
     .cover {
-      background-size: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-size:cover;
       background-position: center;
       width: 100%;
       height: 100%;
@@ -118,6 +128,18 @@
 
   <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
   <script>
+    function fixContainerSize() {
+  const pagination = document.getElementById("pagination");
+  const container = document.getElementById("container");
+
+  const vh = window.innerHeight;
+  const paginationHeight = pagination.offsetHeight;
+  container.style.height = (vh - paginationHeight) + "px";
+}
+
+fixContainerSize();
+window.addEventListener("resize", fixContainerSize);
+
     async function loadDataAndInitFlipbook() {
       const container = document.getElementById("container");
       const pagination = document.getElementById("pagination");
@@ -132,7 +154,7 @@
       cover.className = "page-wrapper";
       cover.innerHTML = `
         <div class="page">
-          <div class="cover" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCeXBvKJ36swYJErI4zO5OD2yqZVNRSoDnxw&s');"></div>
+          <div class="cover" style="background-image: url('https://github.com/adriantoprabowo/515/blob/main/cover.jpg?raw=true');"></div>
         </div>`;
       container.appendChild(cover);
   
@@ -165,7 +187,7 @@
       closer.className = "page-wrapper";
       closer.innerHTML = `
         <div class="page">
-          <div class="cover" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCeXBvKJ36swYJErI4zO5OD2yqZVNRSoDnxw&s');"></div>
+          <div class="cover" style="background-image: url('https://github.com/adriantoprabowo/515/blob/main/cover.jpg?raw=true');"></div>
         </div>`;
       container.appendChild(closer);
 
